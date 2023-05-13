@@ -41,28 +41,43 @@ driver.execute_script(js)
 # choosing street
 select_road = Select(driver.find_element(By.XPATH, value = f'//*[@id="road"]'))
 select_road.select_by_visible_text(u"松信路")
+
 time.sleep(3)
 
-# choosing shop
-select_store = driver.find_element(By.XPATH, value = f'//*[@id="ol_stores"]/li[1]')
+# Search and comparing shop
+# choosing shop //*[@id="ol_stores"]/li[2] 
+# store_name = '智匯城'
+# store_content = driver.find_elements(By.XPATH, f'//*[@id="ol_stores"]')[0].get_attribute('innerHTML')
+# # print(f"This is  store name {store_content}")
+# store_find_start_location = store_content.find(f'{store_name}')
+# print(f"\nThis is store find {store_find_start_location}")
+# store_find_start_location_index = store_find_start_location
+# for store_find_start_location_index in range(len(store_content)):
+#     print(f"This is store_content i {store_content[store_find_start_location_index]}")
+#     if store_content[store_find_start_location_index] == '市' and store_content[store_find_start_location_index-1] == '門':
+#         store_find_end_location = store_find_start_location_index;
+#         break
+# print(f"This is start and end {store_find_start_location}, {store_find_end_location}")
+
+select_store = driver.find_element(By.XPATH, value = f'//*[@id="ol_stores"]/li[2]')
 select_store.click()
 time.sleep(2)
 
-#門市確認
-# return to original frame, because changing to other frame that make selenium can not find the html content
-driver.switch_to.default_content() 
+# #門市確認
+# # return to original frame, because changing to other frame that make selenium can not find the html content
+# driver.switch_to.default_content() 
 
-map_mask = driver.find_element(By.ID, "mapMask")
-content = map_mask.get_attribute("innerHTML")
-print(content)
-driver.find_element(By.XPATH, value = f'//*[@id="sevenDataBtn"]').click()
-time.sleep(2)
-driver.find_element(By.XPATH, value = f'//*[@id="AcceptBtn"]').click()
-time.sleep(2)
-driver.find_element(By.XPATH, value = f'//*[@id="submit_butn"]').click()
+# map_mask = driver.find_element(By.ID, "mapMask")
+# content = map_mask.get_attribute("innerHTML")
+# print(content)
+# driver.find_element(By.XPATH, value = f'//*[@id="sevenDataBtn"]').click()
+# time.sleep(2)
+# driver.find_element(By.XPATH, value = f'//*[@id="AcceptBtn"]').click()
+# time.sleep(2)
+# driver.find_element(By.XPATH, value = f'//*[@id="submit_butn"]').click()
 
-time.sleep(5)
-# 關閉瀏覽器
-driver.close()
+# time.sleep(5)
+# # 關閉瀏覽器
+# driver.close()
 
 
