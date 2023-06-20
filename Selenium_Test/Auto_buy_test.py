@@ -161,7 +161,7 @@ def goopi_login():
         try:
             # 選擇尺寸 /html/body/div[10]/div[1]/div/div/div/div[2]/div[3]/div[2]/div[3]/div[1]/div[2]/select
             select_size = Select(browser.find_element(By.XPATH, value = f'/html/body/div[10]/div[1]/div/div/div/div[2]/div[3]/div[2]/div[3]/div[1]/div[2]/select'))
-            select_road.select_by_visible_text(size)
+            select_size.select_by_visible_text(size)
             # 點擊購買按鍵， 顯性等待，直到出現可以購買後直接購買
             buy = WebDriverWait(browser, 1, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'btn.btn-buy-now.btn-purchase-action.btn-custom.ladda-button.form-control-inline.js-btn-main-buy-now.js-btn-show.js-btn-scroll')))
             buy.click()
