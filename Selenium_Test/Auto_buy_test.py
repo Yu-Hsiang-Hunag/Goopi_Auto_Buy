@@ -76,6 +76,7 @@ def login_windows():
     tk.Label(window, text='有效時間：').place(x=50, y=240)
     tk.Label(window, text='安全碼：').place(x=50, y=270)
     tk.Label(window, text='要買的商品網頁連結').place(x=50, y=300)
+    tk.Label(window, text='尺寸').place(x=50, y=330)
 
     # 建立輸入框
     var_phone = tk.StringVar()
@@ -84,6 +85,7 @@ def login_windows():
     var_time = tk.StringVar()
     var_code = tk.StringVar()
     var_website_link = tk.StringVar()
+    var_size = tk.StringVar()
 
 
     entry_phone = tk.Entry(window, textvariable=var_phone)
@@ -98,20 +100,23 @@ def login_windows():
     entry_code.place(x=160, y=300)
     entry_website_link = tk.Entry(window, textvariable=var_website_link)
     entry_website_link.place(x=160, y=300)
+    entry_size = tk.Entry(window, textvariable=var_size)
+    entry_size.place(x=160, y=330)
 
     #建立登入按鈕
     def usr_login():
-        record_input(entry_usr_name.get(), entry_usr_pwd.get(), entry_phone.get(), entry_card.get(), entry_name.get(), entry_time.get(), entry_code.get())
+        record_input(entry_usr_name.get(), entry_usr_pwd.get(), entry_phone.get(), entry_card.get(), entry_name.get(), entry_time.get(), 
+        entry_code.get(), entry_website_link.get(), entry_size.get())
         window.destroy()
 
         
 
     btn_login = tk.Button(window, text='Login', command=usr_login)
-    btn_login.place(x=170, y=330)
+    btn_login.place(x=170, y=390)
     window.mainloop()
 
-def record_input(acc, pwd, ph, ccn, cn, ct, cs):
-    global user_account, user_password, phone_number, credit_card_number, card_name, card_time, card_security
+def record_input(acc, pwd, ph, ccn, cn, ct, cs, weblink, si):
+    global user_account, user_password, phone_number, credit_card_number, card_name, card_time, card_security, website_link, size
     user_account = acc
     user_password = pwd
     # 結帳資料填寫
@@ -120,6 +125,8 @@ def record_input(acc, pwd, ph, ccn, cn, ct, cs):
     card_name = cn
     card_time = ct
     card_security = cs
+    website_link = weblink
+    size = si
 
 
 
@@ -152,6 +159,9 @@ def goopi_login():
 
     while 1:
         try:
+            # 選擇尺寸 /html/body/div[10]/div[1]/div/div/div/div[2]/div[3]/div[2]/div[3]/div[1]/div[2]/select
+            select_size = Select(browser.find_element(By.XPATH, value = f'/html/body/div[10]/div[1]/div/div/div/div[2]/div[3]/div[2]/div[3]/div[1]/div[2]/select'))
+            select_road.select_by_visible_text(size)
             # 點擊購買按鍵， 顯性等待，直到出現可以購買後直接購買
             buy = WebDriverWait(browser, 1, 0.5).until(EC.presence_of_element_located((By.CLASS_NAME, 'btn.btn-buy-now.btn-purchase-action.btn-custom.ladda-button.form-control-inline.js-btn-main-buy-now.js-btn-show.js-btn-scroll')))
             buy.click()
@@ -273,7 +283,7 @@ time.sleep(10)
 
 
 if __name__ == '__main__':
-    
+    goopi_login()
 
 
 
