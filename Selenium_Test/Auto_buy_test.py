@@ -97,7 +97,7 @@ def login_windows():
     entry_time = tk.Entry(window, textvariable=var_time)
     entry_time.place(x=160, y=240)
     entry_code = tk.Entry(window, textvariable=var_code)
-    entry_code.place(x=160, y=300)
+    entry_code.place(x=160, y=270)
     entry_website_link = tk.Entry(window, textvariable=var_website_link)
     entry_website_link.place(x=160, y=300)
     entry_size = tk.Entry(window, textvariable=var_size)
@@ -154,7 +154,7 @@ def goopi_login():
     # ActionChains(driver).click(search_password).perform()
 
     # 商品的XPATH，也就是選擇商品
-    browser.get('https://www.goopi.co/products/melsign-colour-matching-trousers-abyss')
+    browser.get(website_link)
 
 
     while 1:
